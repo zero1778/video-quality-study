@@ -21,10 +21,12 @@
           cursor:pointer; }
   .hint { display:flex; gap:8px; align-items:center; justify-content:center; margin:8px 0 0;
           font-size:13.5px; color:#5f6368; flex-wrap:wrap; }
-  .lookfor { display:flex; gap:10px; align-items:flex-start; background:#fdf3df;
-             border:1.5px solid var(--gold); border-radius:10px; padding:10px 15px;
-             margin:0 0 10px; font-size:17.5px; line-height:1.45; }
-  .lookfor .eye { font-size:22px; line-height:1.2; }
+  .lookfor { display:flex; gap:12px; align-items:flex-start; background:#fff3d0;
+             border:3px solid var(--gold); border-radius:12px; padding:14px 18px;
+             margin:12px 0 0; font-size:19.5px; line-height:1.5; font-weight:500;
+             box-shadow:0 3px 12px rgba(232,163,61,.35); }
+  .lookfor .eye { font-size:30px; line-height:1.1; }
+  .lookfor b { color:#8a5a00; }
   .seekrow { display:flex; align-items:center; gap:12px; margin-top:7px; }
   .seekbar { flex:1; height:10px; background:#dfe3e8; border-radius:5px; cursor:pointer; }
   .seekfill { height:100%; background:var(--accent); border-radius:5px; width:0%; }
@@ -89,11 +91,11 @@
     <b>3 videos playing at the same time</b>, like this:</p>
 
     <div class="diagram">
+      <div class="dbox orig">Original (has errors)
+        <small>things may <b>deform, jump, or vanish</b> — this is the broken video, <b>on the left</b></small>
+      </div>
       <div class="dbox fix">Video A
         <small>fix attempt 1</small>
-      </div>
-      <div class="dbox orig">Original (has errors)
-        <small>things may <b>deform, jump, or vanish</b> — this is the broken video, <b>in the middle</b></small>
       </div>
       <div class="dbox fix">Video B
         <small>fix attempt 2</small>
@@ -101,7 +103,7 @@
     </div>
 
     <ol class="steps">
-      <li><b>Read the yellow “👀 What to look for” box</b> at the top of each page — it tells
+      <li><b>Read the yellow “👀 What to look for” box</b> right below the video — it tells
           you exactly what is broken in the Original video.</li>
       <li><b>Watch the clip</b> — it loops automatically; watch at least one full loop
           (the bar below shows where the video starts and ends).
@@ -165,17 +167,17 @@ function render() {
   document.getElementById("fill").style.width = (100 * idx / QS.length) + "%";
   document.getElementById("ptext").textContent = `Clip ${idx + 1} of ${QS.length}`;
   let h = `<div class="card" style="padding:16px">
-    <div class="lookfor"><span class="eye">👀</span><span><b>What to look for:</b> ${q.hint}
-      &nbsp;Then compare how <b>Video A</b> and <b>Video B</b> handle it.</span></div>
     <video id="vid" src="${q.clip}" autoplay muted loop playsinline
            onclick="this.paused ? this.play() : this.pause()"></video>
     <div class="seekrow">
       <div class="seekbar" id="seekbar"><div class="seekfill" id="seekfill"></div></div>
       <span class="ttime" id="ttime">0:00 / 0:00</span>
     </div>
+    <div class="lookfor"><span class="eye">👀</span><span><b>What to look for:</b> ${q.hint}
+      &nbsp;Then compare how <b>Video A</b> and <b>Video B</b> handle it.</span></div>
     <div class="hint">
-      <span class="tag o">Original (has errors)</span> is <b>in the middle</b> &nbsp;·&nbsp;
-      <span class="tag ab">Video A</span> (left) and <span class="tag ab">Video B</span> (right)
+      <span class="tag o">Original (has errors)</span> is on the <b>left</b> &nbsp;·&nbsp;
+      <span class="tag ab">Video A</span> (middle) and <span class="tag ab">Video B</span> (right)
       are two attempts to fix it
       &nbsp;·&nbsp; ⏯︎ <b>CLICK</b> the video to <b>PAUSE / PLAY</b>
     </div>
