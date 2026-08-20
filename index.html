@@ -40,6 +40,7 @@
   .kw.fix { color:#8a5a00; background:#fbecc9; }
   .kw.id  { color:#2c4ba8; background:#e2eafc; }
   .kw.vq  { color:#1e7a45; background:#dcf2e5; }
+  .kw.cam { color:#6b34b8; background:#eee4fb; }
   .opts { display:flex; gap:8px; flex-wrap:wrap; max-width:820px; }
   .opts label { flex:1 1 150px; border:2px solid #d7dbe0; border-radius:9px; padding:8px 12px;
                 cursor:pointer; text-align:center; font-size:15px; user-select:none; }
@@ -106,7 +107,7 @@
           (the bar below shows where the video starts and ends).
           You can <b>CLICK</b> the video anytime to <b>PAUSE / PLAY</b>.</li>
       <li><b>Compare Video A and Video B</b> — which one fixes the problem better? Then answer
-          the 3 short questions (pick A, B, or “About the same”).</li>
+          the 4 short questions (pick A, B, or “About the same”).</li>
     </ol>
 
     <p class="muted">There are no right or wrong answers — we just want your honest opinion.
@@ -135,6 +136,7 @@ const QTEXT = {
   a: "Which video <span class='kw fix'>fixed the Original's errors</span> better? <span class='qsub'>(fewer things deforming, jumping around, or disappearing)</span>",
   b: "Which video better <span class='kw id'>keeps the identity of the people / objects</span> from the Original? <span class='qsub'>(same faces, shapes, colors — nothing swapped or turned into something else)</span>",
   c: "Which video has better overall <span class='kw vq'>video quality</span>? <span class='qsub'>(sharper, smoother &amp; more natural motion, fewer blurry or weird-looking areas)</span>",
+  d: "Which video better <span class='kw cam'>follows the camera motion</span> of the Original? <span class='qsub'>(the camera pans / orbits / zooms the same way — same viewpoint and framing over time)</span>",
 };
 const CHOICES = ["Video A", "Video B", "About the same"];
 
@@ -179,7 +181,7 @@ function render() {
     </div>
   </div>
   <div class="card narrow">`;
-  for (const ax of ["a", "b", "c"]) {
+  for (const ax of ["a", "b", "c", "d"]) {
     const key = q.qid + ax;
     h += `<div class="q">${QTEXT[ax]}</div><div class="opts">`;
     for (const c of CHOICES) {
@@ -189,7 +191,7 @@ function render() {
     }
     h += `</div>`;
   }
-  h += `<div class="err" id="err">Please answer all 3 questions before continuing.</div>
+  h += `<div class="err" id="err">Please answer all 4 questions before continuing.</div>
     <div class="nav">
       <button class="ghost" onclick="prev()" ${idx === 0 ? "disabled" : ""}>← Back</button>
       <button id="next" onclick="next()">${idx === QS.length - 1 ? "Submit ✓" : "Next →"}</button>
@@ -213,7 +215,7 @@ function render() {
   window.scrollTo(0, 0);
 }
 
-function answered(q) { return ["a","b","c"].every(ax => answers[q.qid + ax]); }
+function answered(q) { return ["a","b","c","d"].every(ax => answers[q.qid + ax]); }
 function checkNext() { document.getElementById("err").style.display = "none"; }
 function prev() { idx--; render(); }
 function next() {
