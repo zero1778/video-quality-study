@@ -36,6 +36,7 @@
              border:3px solid var(--gold); border-radius:12px; padding:14px 18px;
              margin:12px 0 0; font-size:19.5px; line-height:1.5; font-weight:500;
              box-shadow:0 3px 12px rgba(232,163,61,.35); }
+  body.mobile .lookfor { margin:0 0 10px; }
   .lookfor .eye { font-size:30px; line-height:1.1; }
   .lookfor b { color:#8a5a00; }
   .seekrow { display:flex; align-items:center; gap:12px; margin-top:7px; }
@@ -114,7 +115,7 @@
     </div>
 
     <ol class="steps">
-      <li><b>Read the yellow “👀 What to look for” box</b> right below the video — it tells
+      <li><b>Read the yellow “👀 What to look for” box</b> <span id="lookpos">right below the video</span> — it tells
           you exactly what is broken in the Original video.</li>
       <li><b>Watch the clip</b> — it loops automatically; watch at least one full loop
           (the bar below shows where the video starts and ends).
@@ -159,6 +160,10 @@ let MOBILE = params.has("m") ? params.get("m") === "1"
              : matchMedia("(max-width: 820px)").matches;
 if (MOBILE) document.body.classList.add("mobile");
 const clipSrc = (c) => MOBILE ? c.replace("clips/", "clips_mobile/") : c;
+window.addEventListener("DOMContentLoaded", () => {
+  const lp = document.getElementById("lookpos");
+  if (lp && MOBILE) lp.textContent = "right above the video";
+});
 const N_VERSIONS = Math.max(...window.STUDY_QUESTIONS.map(q => q.version));
 let version = parseInt(params.get("v") || "0");
 if (!(version >= 1 && version <= N_VERSIONS))
@@ -182,15 +187,17 @@ function render() {
   const q = QS[idx];
   document.getElementById("fill").style.width = (100 * idx / QS.length) + "%";
   document.getElementById("ptext").textContent = `Clip ${idx + 1} of ${QS.length}`;
+  const look = `<div class="lookfor"><span class="eye">👀</span><span><b>What to look for:</b> ${q.hint}
+      &nbsp;Then compare how <b>Video A</b> and <b>Video B</b> handle it.</span></div>`;
   let h = `<div class="card" style="padding:16px">
+    ${MOBILE ? look : ""}
     <video id="vid" src="${clipSrc(q.clip)}" autoplay muted loop playsinline
            onclick="this.paused ? this.play() : this.pause()"></video>
     <div class="seekrow">
       <div class="seekbar" id="seekbar"><div class="seekfill" id="seekfill"></div></div>
       <span class="ttime" id="ttime">0:00 / 0:00</span>
     </div>
-    <div class="lookfor"><span class="eye">👀</span><span><b>What to look for:</b> ${q.hint}
-      &nbsp;Then compare how <b>Video A</b> and <b>Video B</b> handle it.</span></div>
+    ${MOBILE ? "" : look}
     <div class="hint">
       <span class="tag o">Original (has errors)</span> is ${MOBILE ? "on <b>top</b>" : "on the <b>left</b>"} &nbsp;·&nbsp;
       <span class="tag ab">Video A</span> (middle) and <span class="tag ab">Video B</span> (${MOBILE ? "bottom" : "right"})
