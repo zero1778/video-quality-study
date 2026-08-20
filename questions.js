@@ -3,7 +3,7 @@ window.STUDY_QUESTIONS = [
   "version": 1,
   "qid": "V1-Q01",
   "clip": "clips/clip_a0e921000e70.mp4",
-  "hint": "Watch the food and objects on the kitchen counter when the camera moves \u2014 in the Original they change shape or position."
+  "hint": "Watch the shape of the kitchen cabinets and the other objects \u2014 in the Original they deform as the camera moves."
  },
  {
   "version": 1,
@@ -15,13 +15,13 @@ window.STUDY_QUESTIONS = [
   "version": 1,
   "qid": "V1-Q03",
   "clip": "clips/clip_67ef623f6752.mp4",
-  "hint": "Watch the main object during the camera orbit \u2014 in the Original its shape breaks and it ends up wrong."
+  "hint": "Watch the man as the camera moves \u2014 in the Original his position changes."
  },
  {
   "version": 1,
   "qid": "V1-Q04",
   "clip": "clips/clip_0c7567ecab22.mp4",
-  "hint": "Watch the scene when the camera pans away and back \u2014 in the Original objects shift and deform."
+  "hint": "Watch the horse and the person after the camera passes the wooden bar \u2014 in the Original the scene changes."
  },
  {
   "version": 1,
@@ -69,7 +69,7 @@ window.STUDY_QUESTIONS = [
   "version": 1,
   "qid": "V1-Q12",
   "clip": "clips/clip_c9845a94b6f9.mp4",
-  "hint": "Watch the main object as the camera circles \u2014 in the Original its geometry falls apart."
+  "hint": "Watch the person during the camera orbit \u2014 in the Original a wheel suddenly appears out of them."
  },
  {
   "version": 1,
@@ -81,13 +81,13 @@ window.STUDY_QUESTIONS = [
   "version": 1,
   "qid": "V1-Q14",
   "clip": "clips/clip_06abc433ede4.mp4",
-  "hint": "Watch the main object while the camera goes around it \u2014 in the Original it deforms and shifts."
+  "hint": "Look at the sheep and the person before and after the camera passes the tree \u2014 in the Original their appearance changes, different from the beginning."
  },
  {
   "version": 1,
   "qid": "V1-Q15",
   "clip": "clips/clip_cf2cdab708b4.mp4",
-  "hint": "Watch the objects while the camera travels \u2014 in the Original they jump around and their shapes break."
+  "hint": "Watch the table in the later part of the clip \u2014 in the Original its shape shifts and moves."
  },
  {
   "version": 1,
@@ -117,7 +117,7 @@ window.STUDY_QUESTIONS = [
   "version": 1,
   "qid": "V1-Q20",
   "clip": "clips/clip_4a478c67740e.mp4",
-  "hint": "Watch the objects while the camera travels \u2014 in the Original they jump around and their shapes break."
+  "hint": "Watch the table in the later part of the clip \u2014 in the Original its shape shifts and moves."
  },
  {
   "version": 1,
@@ -141,7 +141,7 @@ window.STUDY_QUESTIONS = [
   "version": 1,
   "qid": "V1-Q24",
   "clip": "clips/clip_90810107096e.mp4",
-  "hint": "Watch the main object during the camera orbit \u2014 in the Original it comes back looking different."
+  "hint": "Watch the main object while the camera circles around \u2014 in the Original it breaks apart and hallucinated parts appear."
  },
  {
   "version": 1,
@@ -165,25 +165,25 @@ window.STUDY_QUESTIONS = [
   "version": 2,
   "qid": "V2-Q02",
   "clip": "clips/clip_682ded4aaa7b.mp4",
-  "hint": "Watch the main object as the camera circles \u2014 in the Original its geometry falls apart."
+  "hint": "Watch the person during the camera orbit \u2014 in the Original a wheel suddenly appears out of them."
  },
  {
   "version": 2,
   "qid": "V2-Q03",
   "clip": "clips/clip_6e79456b43cd.mp4",
-  "hint": "Watch the main object while the camera goes around it \u2014 in the Original it deforms and shifts."
+  "hint": "Look at the sheep and the person before and after the camera passes the tree \u2014 in the Original their appearance changes, different from the beginning."
  },
  {
   "version": 2,
   "qid": "V2-Q04",
   "clip": "clips/clip_52f699a1c941.mp4",
-  "hint": "Watch the main object during the camera orbit \u2014 in the Original its shape breaks and it ends up wrong."
+  "hint": "Watch the man as the camera moves \u2014 in the Original his position changes."
  },
  {
   "version": 2,
   "qid": "V2-Q05",
   "clip": "clips/clip_68d46dc39312.mp4",
-  "hint": "Watch the main object during the camera orbit \u2014 in the Original it comes back looking different."
+  "hint": "Watch the main object while the camera circles around \u2014 in the Original it breaks apart and hallucinated parts appear."
  },
  {
   "version": 2,
@@ -195,7 +195,7 @@ window.STUDY_QUESTIONS = [
   "version": 2,
   "qid": "V2-Q07",
   "clip": "clips/clip_f4591b0d910e.mp4",
-  "hint": "Watch the scene when the camera pans away and back \u2014 in the Original objects shift and deform."
+  "hint": "Watch the horse and the person after the camera passes the wooden bar \u2014 in the Original the scene changes."
  },
  {
   "version": 2,
@@ -231,7 +231,7 @@ window.STUDY_QUESTIONS = [
   "version": 2,
   "qid": "V2-Q13",
   "clip": "clips/clip_43f47fc1f8d4.mp4",
-  "hint": "Watch the objects while the camera travels \u2014 in the Original they jump around and their shapes break."
+  "hint": "Watch the table in the later part of the clip \u2014 in the Original its shape shifts and moves."
  },
  {
   "version": 2,
@@ -249,7 +249,7 @@ window.STUDY_QUESTIONS = [
   "version": 2,
   "qid": "V2-Q16",
   "clip": "clips/clip_a12ece1f2084.mp4",
-  "hint": "Watch the main object as the camera circles \u2014 in the Original its geometry falls apart."
+  "hint": "Watch the person during the camera orbit \u2014 in the Original a wheel suddenly appears out of them."
  },
  {
   "version": 2,
@@ -279,7 +279,7 @@ window.STUDY_QUESTIONS = [
   "version": 2,
   "qid": "V2-Q21",
   "clip": "clips/clip_7e47b45d779c.mp4",
-  "hint": "Watch the food and objects on the kitchen counter when the camera moves \u2014 in the Original they change shape or position."
+  "hint": "Watch the shape of the kitchen cabinets and the other objects \u2014 in the Original they deform as the camera moves."
  },
  {
   "version": 2,
@@ -315,7 +315,7 @@ window.STUDY_QUESTIONS = [
   "version": 3,
   "qid": "V3-Q01",
   "clip": "clips/clip_3cd9cd48df4a.mp4",
-  "hint": "Watch the main object during the camera orbit \u2014 in the Original its shape breaks and it ends up wrong."
+  "hint": "Watch the man as the camera moves \u2014 in the Original his position changes."
  },
  {
   "version": 3,
@@ -357,7 +357,7 @@ window.STUDY_QUESTIONS = [
   "version": 3,
   "qid": "V3-Q08",
   "clip": "clips/clip_43d091f0ac3d.mp4",
-  "hint": "Watch the food and objects on the kitchen counter when the camera moves \u2014 in the Original they change shape or position."
+  "hint": "Watch the shape of the kitchen cabinets and the other objects \u2014 in the Original they deform as the camera moves."
  },
  {
   "version": 3,
@@ -375,7 +375,7 @@ window.STUDY_QUESTIONS = [
   "version": 3,
   "qid": "V3-Q11",
   "clip": "clips/clip_9a61ebd27c21.mp4",
-  "hint": "Watch the objects while the camera travels \u2014 in the Original they jump around and their shapes break."
+  "hint": "Watch the table in the later part of the clip \u2014 in the Original its shape shifts and moves."
  },
  {
   "version": 3,
@@ -429,13 +429,13 @@ window.STUDY_QUESTIONS = [
   "version": 3,
   "qid": "V3-Q20",
   "clip": "clips/clip_89a64022320c.mp4",
-  "hint": "Watch the scene when the camera pans away and back \u2014 in the Original objects shift and deform."
+  "hint": "Watch the horse and the person after the camera passes the wooden bar \u2014 in the Original the scene changes."
  },
  {
   "version": 3,
   "qid": "V3-Q21",
   "clip": "clips/clip_ef926f37d0ff.mp4",
-  "hint": "Watch the main object during the camera orbit \u2014 in the Original it comes back looking different."
+  "hint": "Watch the main object while the camera circles around \u2014 in the Original it breaks apart and hallucinated parts appear."
  },
  {
   "version": 3,
@@ -459,13 +459,13 @@ window.STUDY_QUESTIONS = [
   "version": 3,
   "qid": "V3-Q25",
   "clip": "clips/clip_032b5640f523.mp4",
-  "hint": "Watch the main object as the camera circles \u2014 in the Original its geometry falls apart."
+  "hint": "Watch the person during the camera orbit \u2014 in the Original a wheel suddenly appears out of them."
  },
  {
   "version": 3,
   "qid": "V3-Q26",
   "clip": "clips/clip_1dc6499748dd.mp4",
-  "hint": "Watch the main object while the camera goes around it \u2014 in the Original it deforms and shifts."
+  "hint": "Look at the sheep and the person before and after the camera passes the tree \u2014 in the Original their appearance changes, different from the beginning."
  },
  {
   "version": 4,
@@ -483,13 +483,13 @@ window.STUDY_QUESTIONS = [
   "version": 4,
   "qid": "V4-Q03",
   "clip": "clips/clip_5984e29d0da2.mp4",
-  "hint": "Watch the main object while the camera goes around it \u2014 in the Original it deforms and shifts."
+  "hint": "Look at the sheep and the person before and after the camera passes the tree \u2014 in the Original their appearance changes, different from the beginning."
  },
  {
   "version": 4,
   "qid": "V4-Q04",
   "clip": "clips/clip_b8d83bb3df44.mp4",
-  "hint": "Watch the food and objects on the kitchen counter when the camera moves \u2014 in the Original they change shape or position."
+  "hint": "Watch the shape of the kitchen cabinets and the other objects \u2014 in the Original they deform as the camera moves."
  },
  {
   "version": 4,
@@ -507,7 +507,7 @@ window.STUDY_QUESTIONS = [
   "version": 4,
   "qid": "V4-Q07",
   "clip": "clips/clip_b674f366074c.mp4",
-  "hint": "Watch the main object during the camera orbit \u2014 in the Original its shape breaks and it ends up wrong."
+  "hint": "Watch the man as the camera moves \u2014 in the Original his position changes."
  },
  {
   "version": 4,
@@ -555,7 +555,7 @@ window.STUDY_QUESTIONS = [
   "version": 4,
   "qid": "V4-Q15",
   "clip": "clips/clip_b53d01ab6ba5.mp4",
-  "hint": "Watch the main object as the camera circles \u2014 in the Original its geometry falls apart."
+  "hint": "Watch the person during the camera orbit \u2014 in the Original a wheel suddenly appears out of them."
  },
  {
   "version": 4,
@@ -579,7 +579,7 @@ window.STUDY_QUESTIONS = [
   "version": 4,
   "qid": "V4-Q19",
   "clip": "clips/clip_3878da93c03a.mp4",
-  "hint": "Watch the scene when the camera pans away and back \u2014 in the Original objects shift and deform."
+  "hint": "Watch the horse and the person after the camera passes the wooden bar \u2014 in the Original the scene changes."
  },
  {
   "version": 4,
@@ -591,7 +591,7 @@ window.STUDY_QUESTIONS = [
   "version": 4,
   "qid": "V4-Q21",
   "clip": "clips/clip_d2a95c2608b6.mp4",
-  "hint": "Watch the objects while the camera travels \u2014 in the Original they jump around and their shapes break."
+  "hint": "Watch the table in the later part of the clip \u2014 in the Original its shape shifts and moves."
  },
  {
   "version": 4,
@@ -615,7 +615,7 @@ window.STUDY_QUESTIONS = [
   "version": 4,
   "qid": "V4-Q25",
   "clip": "clips/clip_155df3379674.mp4",
-  "hint": "Watch the main object during the camera orbit \u2014 in the Original it comes back looking different."
+  "hint": "Watch the main object while the camera circles around \u2014 in the Original it breaks apart and hallucinated parts appear."
  },
  {
   "version": 4,
