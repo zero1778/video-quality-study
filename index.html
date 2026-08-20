@@ -19,6 +19,17 @@
   .muted { color:#5f6368; }
   video { width:100%; max-height:78vh; border-radius:8px; background:#000; display:block;
           cursor:pointer; }
+  body.mobile video { max-height:none; }
+  @media (max-width: 700px) {
+    .wrap { padding:10px 8px 60px; }
+    .card { padding:16px; }
+    h1 { font-size:24px; }
+    p, li { font-size:16px; }
+    .diagram { flex-direction:column; }
+    .lookfor { font-size:17px; padding:12px 14px; }
+    .opts label { flex:1 1 100%; padding:10px 12px; }
+    .q { font-size:15.5px; }
+  }
   .hint { display:flex; gap:8px; align-items:center; justify-content:center; margin:8px 0 0;
           font-size:13.5px; color:#5f6368; flex-wrap:wrap; }
   .lookfor { display:flex; gap:12px; align-items:flex-start; background:#fff3d0;
@@ -87,8 +98,8 @@
   <div class="narrow" id="intro"><div class="card">
     <h1>🎬 Video Quality Study <span class="muted" style="font-size:16px">(~15 minutes)</span></h1>
 
-    <p>On every page you will see <b>one wide clip</b> that contains
-    <b>3 videos playing at the same time</b>, like this:</p>
+    <p>On every page you will see <b>3 videos</b> — on a phone they are stacked
+    <b>top to bottom</b>, on a computer they sit <b>side by side</b>:</p>
 
     <div class="diagram">
       <div class="dbox orig">Original (has errors)
@@ -113,7 +124,7 @@
     </ol>
 
     <p class="muted">There are no right or wrong answers — we just want your honest opinion.
-    Please use a laptop/desktop for a good view.</p>
+    Works on both phone and computer — on a phone, scroll to see all three videos.</p>
 
     <p class="q" style="margin-top:20px">Your nickname or initials:</p>
     <input id="nick" class="nickbox" placeholder="e.g. Minh, JD, cat123…">
@@ -143,6 +154,11 @@ const QTEXT = {
 const CHOICES = ["Video A", "Video B", "About the same"];
 
 const params = new URLSearchParams(location.search);
+// mobile: video xếp dọc (clips_mobile/), tự detect hoặc ép bằng ?m=1 / ?m=0
+let MOBILE = params.has("m") ? params.get("m") === "1"
+             : matchMedia("(max-width: 820px)").matches;
+if (MOBILE) document.body.classList.add("mobile");
+const clipSrc = (c) => MOBILE ? c.replace("clips/", "clips_mobile/") : c;
 const N_VERSIONS = Math.max(...window.STUDY_QUESTIONS.map(q => q.version));
 let version = parseInt(params.get("v") || "0");
 if (!(version >= 1 && version <= N_VERSIONS))
@@ -167,7 +183,7 @@ function render() {
   document.getElementById("fill").style.width = (100 * idx / QS.length) + "%";
   document.getElementById("ptext").textContent = `Clip ${idx + 1} of ${QS.length}`;
   let h = `<div class="card" style="padding:16px">
-    <video id="vid" src="${q.clip}" autoplay muted loop playsinline
+    <video id="vid" src="${clipSrc(q.clip)}" autoplay muted loop playsinline
            onclick="this.paused ? this.play() : this.pause()"></video>
     <div class="seekrow">
       <div class="seekbar" id="seekbar"><div class="seekfill" id="seekfill"></div></div>
@@ -176,8 +192,8 @@ function render() {
     <div class="lookfor"><span class="eye">👀</span><span><b>What to look for:</b> ${q.hint}
       &nbsp;Then compare how <b>Video A</b> and <b>Video B</b> handle it.</span></div>
     <div class="hint">
-      <span class="tag o">Original (has errors)</span> is on the <b>left</b> &nbsp;·&nbsp;
-      <span class="tag ab">Video A</span> (middle) and <span class="tag ab">Video B</span> (right)
+      <span class="tag o">Original (has errors)</span> is ${MOBILE ? "on <b>top</b>" : "on the <b>left</b>"} &nbsp;·&nbsp;
+      <span class="tag ab">Video A</span> (middle) and <span class="tag ab">Video B</span> (${MOBILE ? "bottom" : "right"})
       are two attempts to fix it
       &nbsp;·&nbsp; ⏯︎ <b>CLICK</b> the video to <b>PAUSE / PLAY</b>
     </div>
