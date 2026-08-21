@@ -138,6 +138,14 @@
     <h1>✓ All done — thank you!</h1>
     <p class="muted">Your answers have been recorded. You can close this page.</p>
   </div>
+  <div class="card done" id="fail" style="display:none">
+    <h1>⚠️ Could not reach the server</h1>
+    <p class="muted">Your answers are NOT lost — they are saved in this page.</p>
+    <p><button onclick="retrySubmit()" id="retrybtn">↻ Try again</button>
+       <button class="ghost" onclick="downloadBackup()">⬇ Save answers as a file</button></p>
+    <p class="muted">If retrying keeps failing (some networks block Google servers),
+       tap “Save answers as a file” and send us the file. Thank you!</p>
+  </div>
 </div>
 
 <script src="questions.js"></script>
@@ -252,36 +260,63 @@ function next() {
   submit();
 }
 
-if (location.hash === "#autostart") window.addEventListener("load", start);
+if (location.hash === "#autostart")
+  window.addEventListener("load", () => start()); // late-bound: picks up the
+                                                   // nickname-saving override below
 
+let _body = "";
+function downloadBackup() {
+  const blob = new Blob([_body], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "study_answers.json";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+async function trySend() {
+  // With mode:"no-cors" the response is opaque; a resolved fetch means the
+  // request reached the server. 3 attempts with a small backoff.
+  for (let i = 0; i < 3; i++) {
+    try {
+      await fetch(ENDPOINT, {
+        method: "POST", mode: "no-cors", keepalive: true,
+        headers: { "Content-Type": "text/plain" },
+        body: _body,
+      });
+      return true;
+    } catch (e) {
+      await new Promise(r => setTimeout(r, 1200 * (i + 1)));
+    }
+  }
+  return false;
+}
+async function retrySubmit() {
+  const b = document.getElementById("retrybtn");
+  b.disabled = true; b.textContent = "Retrying…";
+  const ok = await trySend();
+  b.disabled = false; b.textContent = "↻ Try again";
+  if (ok) {
+    document.getElementById("fail").style.display = "none";
+    document.getElementById("done").style.display = "block";
+  }
+}
 async function submit() {
   const btn = document.getElementById("next");
   btn.disabled = true; btn.textContent = "Submitting…";
+  const nickEl = document.getElementById("nick");
   const payload = {
     version: version,
-    nickname: document.getElementById("nick") ? "" : "",
+    nickname: (window._nick || (nickEl && nickEl.value.trim()) || "anon"),
     userAgent: navigator.userAgent,
     answers: answers,
   };
-  payload.nickname = window._nick || "anon";
-  const body = JSON.stringify(payload);
-  // Show "Done" immediately; the request is sent in the background.
-  // keepalive:true lets the browser finish the POST even if the tab closes.
+  _body = JSON.stringify(payload);
+  const ok = await trySend();
   document.getElementById("study").style.display = "none";
   document.getElementById("bar").style.display = "none";
-  document.getElementById("done").style.display = "block";
-  fetch(ENDPOINT, {
-    method: "POST", mode: "no-cors", keepalive: true,
-    headers: { "Content-Type": "text/plain" },
-    body: body,
-  }).catch(() => {
-    const blob = new Blob([body], { type: "application/json" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "study_answers.json";
-    a.click();
-    alert("Network error — your answers were saved as a file. Please send it back to us. Thank you!");
-  });
+  document.getElementById(ok ? "done" : "fail").style.display = "block";
+  if (!ok) btn.disabled = false;
 }
 // keep nickname after intro card is hidden
 const _origStart = start;
