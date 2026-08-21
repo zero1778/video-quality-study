@@ -136,7 +136,10 @@
 
   <div class="card done" id="done" style="display:none">
     <h1>✓ All done — thank you!</h1>
-    <p class="muted">Your answers have been recorded. You can close this page.</p>
+    <p class="muted">The server confirmed your answers are recorded. You can close this page.</p>
+    <p><button class="ghost" onclick="copyBackup('copybtn2','donetext')" id="copybtn2">📋 Copy answers (optional backup)</button></p>
+    <textarea id="donetext" readonly style="display:none;width:100%;height:110px;margin-top:8px;
+      font-size:11px;border-radius:8px;padding:6px;box-sizing:border-box"></textarea>
   </div>
   <div class="card done" id="fail" style="display:none">
     <h1>⚠️ Could not reach the server</h1>
@@ -150,6 +153,7 @@
     <textarea id="failtext" readonly style="display:none;width:100%;height:110px;margin-top:8px;
       font-size:11px;border-radius:8px;padding:6px;box-sizing:border-box"></textarea>
   </div>
+  <p class="muted" style="text-align:center;font-size:11px;opacity:.5">build 2026-08-21a</p>
 </div>
 
 <script src="questions.js"></script>
@@ -279,29 +283,32 @@ function downloadBackup() {
   a.remove();
 }
 async function trySend() {
-  // With mode:"no-cors" the response is opaque; a resolved fetch means the
-  // request reached the server. 3 attempts with a small backoff.
+  // VERIFIED submit: CORS request whose response body must literally read "ok"
+  // (the Apps Script backend replies "ok" only AFTER the row is written).
+  // A firewall/proxy can fake a completed request, but it cannot fake the "ok",
+  // so "All done" is only shown when the data is truly in the sheet.
   for (let i = 0; i < 3; i++) {
     const ctl = new AbortController();
-    const t = setTimeout(() => ctl.abort(), 10000); // blocked networks hang forever
+    const t = setTimeout(() => ctl.abort(), 15000); // blocked networks hang forever
     try {
-      await fetch(ENDPOINT, {
-        method: "POST", mode: "no-cors", keepalive: true,
+      const res = await fetch(ENDPOINT, {
+        method: "POST", mode: "cors", redirect: "follow",
         headers: { "Content-Type": "text/plain" },
         body: _body, signal: ctl.signal,
       });
       clearTimeout(t);
-      return true;
+      const txt = (await res.text()).trim();
+      if (txt === "ok") return true; // end-to-end confirmed
     } catch (e) {
       clearTimeout(t);
-      await new Promise(r => setTimeout(r, 1200 * (i + 1)));
     }
+    await new Promise(r => setTimeout(r, 1200 * (i + 1)));
   }
   return false;
 }
-async function copyBackup() {
-  const b = document.getElementById("copybtn");
-  const ta = document.getElementById("failtext");
+async function copyBackup(btnId, taId) {
+  const b = document.getElementById(btnId || "copybtn");
+  const ta = document.getElementById(taId || "failtext");
   ta.style.display = "block"; ta.value = _body;
   let ok = false;
   try { await navigator.clipboard.writeText(_body); ok = true; } catch (e) {}
